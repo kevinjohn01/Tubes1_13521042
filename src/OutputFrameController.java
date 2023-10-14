@@ -174,7 +174,7 @@ public class OutputFrameController {
         // Invalid when a button with an X or an O is clicked.
         if (!this.buttons[i][j].getText().equals(""))
             new Alert(Alert.AlertType.ERROR, "Invalid coordinates: Try again!").showAndWait();
-        // Button must be blank.
+            // Button must be blank.
         else {
             if (this.playerXTurn) {
                 // Changed background color to green to indicate next player's turn.
@@ -353,7 +353,7 @@ public class OutputFrameController {
     }
 
     private void moveBot() {
-        int[] botMove = this.bot.move();
+        int[] botMove = this.bot.move(this.buttons, this.roundsLeft);
         int i = botMove[0];
         int j = botMove[1];
 
