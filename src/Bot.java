@@ -22,6 +22,10 @@ public class Bot {
 
     public int[] move(Button[][] buttons, int round) {
         // create random move
+        //int i = 0;
+        //System.out.print("ROUNDDDDDDDDDDDDDDDDDD ");
+        //System.out.println(i);
+        //i+=1;
         return localSearch(buttons, round);
 
     }
@@ -45,10 +49,14 @@ public class Bot {
         Button[][] current = updateButton(salinanButton, 0, 0);
         int i = 0;
         int j = 0;
+        int n = 5;
         int valueCurrent = ObjectiveFunction(current);
         int[] neighbor;
         neighbor = highValue(salinanButtonNeighbor);
-        while (neighbor[0] > valueCurrent && !Thread.currentThread().isInterrupted()) {
+        while (neighbor[0] >= valueCurrent && !Thread.currentThread().isInterrupted() && n <= 5) {
+            if(neighbor[0] == valueCurrent){
+                n+=1;
+            }
             salinanButton = copyButton(buttons);
             current = updateButton(salinanButton, neighbor[1], neighbor[2]);
             i = neighbor[1];
@@ -96,6 +104,7 @@ public class Bot {
             for (int j = 0; j < 8; j++) {
                 if(buttons[i][j].getText().equals("")){
                     buttonsUpdate = copyButton(updateButton(simpanButton, i, j));
+                    simpanButton = copyButton(buttons);
                     value = ObjectiveFunction(buttonsUpdate);
                     System.out.println("Ini Value");
                     System.out.println(value);
@@ -117,6 +126,7 @@ public class Bot {
     }
 
     public Button[][] updateButton(Button[][] simpan, int i, int j) {
+        simpan[i][j].setText("O");
         if (i - 1 >= 0 && simpan[i-1][j].getText()=="X") {
             simpan[i - 1][j].setText("O");
         }
