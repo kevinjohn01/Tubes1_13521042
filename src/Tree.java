@@ -43,4 +43,8 @@ public class Tree {
 
         }
     }
+
+    public int solve(){
+        return 0;
+    }
 }
