@@ -6,23 +6,24 @@ public class Tree {
     private ArrayList<Tree> treeList;
 
     public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree){
-        // hitung value sendiri
-        int nX = 0;
-        int nO = 0;
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                if (buttons[i][j].getText().equals("X")){
-                    nX++;
-                }
-                if (buttons[i][j].getText().equals("O")){
-                    nO++;
+        // hitung value sendiri di h = 0
+        if (h == 0){
+            int nX = 0;
+            int nO = 0;
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 8; j++){
+                    if (buttons[i][j].getText().equals("X")){
+                        nX++;
+                    }
+                    if (buttons[i][j].getText().equals("O")){
+                        nO++;
+                    }
                 }
             }
+            this.val = nO-nX;
         }
-        this.val = nO-nX;
-
         // rekursif buat tree child
-        if (h != 0){
+        else{
             for(int i = 0; i < 8; i++){
                 for(int j = 0; j < 8; j++){
                     if (buttons[i][j].getText().equals("")){
