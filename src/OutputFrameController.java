@@ -50,7 +50,7 @@ public class OutputFrameController {
     private int playerOScore;
     private int roundsLeft;
     private boolean isBotFirst;
-    private Bot bot;
+    private BotMiniMax bot;
 
 
     private static final int ROW = 8;
@@ -77,7 +77,7 @@ public class OutputFrameController {
         this.isBotFirst = isBotFirst;
 
         // Start bot
-        this.bot = new Bot();
+        this.bot = new BotMiniMax();
         this.playerXTurn = !isBotFirst;
         if (this.isBotFirst) {
             this.moveBot();

@@ -8,9 +8,12 @@ public class Tree {
     private ArrayList<Tree> treeList;
 
     public Tree(Button[][] buttons, int h, int i_tree, int j_tree, boolean giliransaya){
+        System.out.println("h: " + h);
         treeList = new ArrayList<Tree>();
-        // hitung value sendiri di h = 0
+        // hitung value sendiri di h = 1
         if (h == 1){
+            System.out.println("..");
+            buttons = updateButtons(buttons, i_tree, j_tree, giliransaya);
             int nX = 0;
             int nO = 0;
             for(int i = 0; i < 8; i++){
@@ -23,23 +26,19 @@ public class Tree {
                     }
                 }
             }
-            System.out.println("Buttons: ");
-            printButtons(buttons);
-            this.val = nO-nX;
-            System.out.println("val: " + this.val);
+//            System.out.println(i_tree + " " + j_tree + " Buttons: ");
+//            printButtons(buttons);
+//            this.val = nO-nX;
+//            System.out.println("val: " + this.val);
         }
         // rekursif buat tree child
         else{
+            System.out.println("...");
+            buttons = updateButtons(buttons,i_tree,j_tree,giliransaya);
             for(int i = 0; i < 8; i++){
                 for(int j = 0; j < 8; j++){
                     if (buttons[i][j].getText().isEmpty()){
-                        Button[][] newButtons = new Button[8][8];
-                        for(int is = 0; is < 8; is++){
-                            for(int js = 0; js < 8; js++){
-                                newButtons[i][j] = new Button();
-                            }
-                        }
-                        Tree updatedTree = new Tree(newButtons, h-1, i, j, !giliransaya);
+                        Tree updatedTree = new Tree(buttons, h-1, i, j, !giliransaya);
                         this.treeList.add(updatedTree);
                     }
                 }
@@ -49,6 +48,7 @@ public class Tree {
             } else {
                 this.val = min(this.treeList);
             }
+            System.out.println("else " + this.val);
         }
     }
 

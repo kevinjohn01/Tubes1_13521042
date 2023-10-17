@@ -42,6 +42,7 @@ public class Main extends Application {
 //        buttons[0][6].setText("");
 //        buttons[0][5].setText("");
 //        buttons[0][4].setText("");
+//        buttons[1][4].setText("");
 //
 //        for(int i = 0; i < 8; i++){
 //            for(int j = 0; j < 8; j++){
@@ -53,14 +54,14 @@ public class Main extends Application {
 //            System.out.println();
 //        }
 //
-//        Tree t = new Tree(buttons, 4, 0,4, true);
+//        Tree t = new Tree(buttons, 3, 0,4, true);
 //
 //        System.out.println("Size t: " + t.getTreeList().size());
 //        System.out.println("Size t[0]: " + t.getTreeList().get(0).getTreeList().size());
 //        System.out.println("Size t[0][0]: " + t.getTreeList().get(0).getTreeList().get(0).getTreeList().size());
 //
 //        System.out.println("Done");
-//
+
 //        BotMiniMax bmm = new BotMiniMax();
 //        int[] ans = bmm.move(buttons,1);
 //        System.out.println(ans[0] + " " + ans[1]);
