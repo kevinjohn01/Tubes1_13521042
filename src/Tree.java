@@ -1,13 +1,16 @@
+import javafx.application.Application;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
+import javafx.application.Application;
 
 public class Tree {
     private int val;
     private ArrayList<Tree> treeList;
 
     public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree){
+        treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 0
-        if (h == 0){
+        if (h == 1){
             int nX = 0;
             int nO = 0;
             for(int i = 0; i < 8; i++){
@@ -20,23 +23,48 @@ public class Tree {
                     }
                 }
             }
+            System.out.println("Buttons: ");
+            printButtons(buttons);
             this.val = nO-nX;
+            System.out.println("val: " + this.val);
         }
         // rekursif buat tree child
         else{
             for(int i = 0; i < 8; i++){
                 for(int j = 0; j < 8; j++){
                     if (buttons[i][j].getText().equals("")){
-                        treeList.add(new Tree(updateButtons(buttons, h, h_init, i_tree, j_tree), h-1, h_init, i_tree, j_tree));
+                        Button[][] newButtons = new Button[8][8];
+                        for(int is = 0; is < 8; is++){
+                            for(int js = 0; js < 8; js++){
+                                newButtons[i][j] = new Button();
+                            }
+                        }
+                        newButtons = updateButtons(buttons, h, h_init, i, j);
+                        Tree updatedTree = new Tree(newButtons, h-1, h_init, i, j);
+                        this.treeList.add(updatedTree);
                     }
                 }
             }
         }
     }
 
+    public int getVal(){
+        return this.val;
+    }
+
+    public ArrayList<Tree> getTreeList(){
+        return this.treeList;
+    }
     public Button[][] updateButtons(Button[][] oldButtons, int h, int h_init, int i_tree, int j_tree){
-        Button[][] newButtons = oldButtons;
+        Button[][] newButtons = new Button[8][8];
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                newButtons[i][j] = new Button();
+                newButtons[i][j].setText(oldButtons[i][j].getText());
+            }
+        }
         if ((h_init-h)%2 == 0){
+            System.out.println("Giliran O");
             // giliran O
             newButtons[i_tree][j_tree].setText("O");
             // cek atas
@@ -57,6 +85,7 @@ public class Tree {
             }
         }
         else{
+            System.out.println("Giliran X");
             // giliran X
             newButtons[i_tree][j_tree].setText("X");
             // cek atas
@@ -71,12 +100,31 @@ public class Tree {
             if (j_tree-1 > 0 && newButtons[i_tree][j_tree-1].getText().equals("O")){
                 newButtons[i_tree][j_tree-1].setText("X");
             }
+
             // cek kanan
             if (j_tree+1 < 8 && newButtons[i_tree][j_tree+1].getText().equals("O")){
                 newButtons[i_tree][j_tree+1].setText("X");
             }
         }
         return newButtons;
+    }
+
+    public void printButtons(Button[][] buttons){
+        String[][] m = new String[8][8];
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                m[i][j] = buttons[i][j].getText();
+            }
+        }
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                System.out.print(m[i][j]);
+                if (m[i][j].equals("")){
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
     }
 
     public int solve(){
