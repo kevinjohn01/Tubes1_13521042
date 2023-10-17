@@ -39,7 +39,6 @@ public class Tree {
                                 newButtons[i][j] = new Button();
                             }
                         }
-                        newButtons = updateButtons(buttons, i, j, giliransaya);
                         Tree updatedTree = new Tree(newButtons, h-1, i, j, !giliransaya);
                         this.treeList.add(updatedTree);
                     }
@@ -93,11 +92,10 @@ public class Tree {
             }
         }
         if (giliransaya){
-            System.out.println("Giliran O");
             // giliran O
             newButtons[i_tree][j_tree].setText("O");
             // cek atas
-            if (i_tree-1 > 0 && newButtons[i_tree-1][j_tree].getText().equals("X")){
+            if (i_tree-1 >= 0 && newButtons[i_tree-1][j_tree].getText().equals("X")){
                 newButtons[i_tree-1][j_tree].setText("O");
             }
             // cek bawah
@@ -105,7 +103,7 @@ public class Tree {
                 newButtons[i_tree+1][j_tree].setText("O");
             }
             // cek kiri
-            if (j_tree-1 > 0 && newButtons[i_tree][j_tree-1].getText().equals("X")){
+            if (j_tree-1 >= 0 && newButtons[i_tree][j_tree-1].getText().equals("X")){
                 newButtons[i_tree][j_tree-1].setText("O");
             }
             // cek kanan
@@ -114,11 +112,10 @@ public class Tree {
             }
         }
         else{
-            System.out.println("Giliran X");
             // giliran X
             newButtons[i_tree][j_tree].setText("X");
             // cek atas
-            if (i_tree-1 > 0 && newButtons[i_tree-1][j_tree].getText().equals("O")){
+            if (i_tree-1 >= 0 && newButtons[i_tree-1][j_tree].getText().equals("O")){
                 newButtons[i_tree-1][j_tree].setText("X");
             }
             // cek bawah
@@ -126,7 +123,7 @@ public class Tree {
                 newButtons[i_tree+1][j_tree].setText("X");
             }
             // cek kiri
-            if (j_tree-1 > 0 && newButtons[i_tree][j_tree-1].getText().equals("O")){
+            if (j_tree-1 >= 0 && newButtons[i_tree][j_tree-1].getText().equals("O")){
                 newButtons[i_tree][j_tree-1].setText("X");
             }
 
