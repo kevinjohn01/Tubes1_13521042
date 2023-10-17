@@ -7,7 +7,7 @@ public class Tree {
     private int val;
     private ArrayList<Tree> treeList;
 
-    public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree){
+    public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree, boolean giliransaya){
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 0
         if (h == 1){
@@ -32,7 +32,7 @@ public class Tree {
         else{
             for(int i = 0; i < 8; i++){
                 for(int j = 0; j < 8; j++){
-                    if (buttons[i][j].getText().equals("")){
+                    if (buttons[i][j].getText().isEmpty()){
                         Button[][] newButtons = new Button[8][8];
                         for(int is = 0; is < 8; is++){
                             for(int js = 0; js < 8; js++){
@@ -40,16 +40,45 @@ public class Tree {
                             }
                         }
                         newButtons = updateButtons(buttons, h, h_init, i, j);
-                        Tree updatedTree = new Tree(newButtons, h-1, h_init, i, j);
+                        Tree updatedTree = new Tree(newButtons, h-1, h_init, i, j, !giliransaya);
                         this.treeList.add(updatedTree);
                     }
                 }
+            }
+            if(giliransaya) {
+                this.val = max(this.treeList);
+            } else {
+                this.val = min(this.treeList);
             }
         }
     }
 
     public int getVal(){
         return this.val;
+    }
+
+    public void setVal(int value) {
+        this.val = value;
+    }
+
+    public int max(ArrayList<Tree> listval){
+        int max = -9999;
+        for (Tree j : listval) {
+            if (j.getVal() >= max) {
+                max = j.getVal();
+            }
+        }
+        return max;
+    }
+
+    public int min(ArrayList<Tree> listval){
+        int min = 9999;
+        for (Tree j : listval) {
+            if (j.getVal() <= min) {
+                min = j.getVal();
+            }
+        }
+        return min;
     }
 
     public ArrayList<Tree> getTreeList(){
@@ -119,7 +148,7 @@ public class Tree {
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 System.out.print(m[i][j]);
-                if (m[i][j].equals("")){
+                if (m[i][j].isEmpty()){
                     System.out.print(" ");
                 }
             }
@@ -127,7 +156,4 @@ public class Tree {
         }
     }
 
-    public int solve(){
-        return 0;
-    }
 }
