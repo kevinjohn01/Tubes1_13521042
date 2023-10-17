@@ -53,7 +53,7 @@ public class Main extends Application {
             System.out.println();
         }
 
-        Tree t = new Tree(buttons, 4, 4, 0,4, true);
+        Tree t = new Tree(buttons, 4, 0,4, true);
 
         System.out.println("Size t: " + t.getTreeList().size());
         System.out.println("Size t[0]: " + t.getTreeList().get(0).getTreeList().size());

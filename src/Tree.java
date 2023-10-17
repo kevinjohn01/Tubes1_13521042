@@ -7,7 +7,7 @@ public class Tree {
     private int val;
     private ArrayList<Tree> treeList;
 
-    public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree, boolean giliransaya){
+    public Tree(Button[][] buttons, int h, int i_tree, int j_tree, boolean giliransaya){
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 0
         if (h == 1){
@@ -39,8 +39,8 @@ public class Tree {
                                 newButtons[i][j] = new Button();
                             }
                         }
-                        newButtons = updateButtons(buttons, h, h_init, i, j);
-                        Tree updatedTree = new Tree(newButtons, h-1, h_init, i, j, !giliransaya);
+                        newButtons = updateButtons(buttons, i, j, giliransaya);
+                        Tree updatedTree = new Tree(newButtons, h-1, i, j, !giliransaya);
                         this.treeList.add(updatedTree);
                     }
                 }
@@ -84,7 +84,7 @@ public class Tree {
     public ArrayList<Tree> getTreeList(){
         return this.treeList;
     }
-    public Button[][] updateButtons(Button[][] oldButtons, int h, int h_init, int i_tree, int j_tree){
+    public Button[][] updateButtons(Button[][] oldButtons, int i_tree, int j_tree, boolean giliransaya){
         Button[][] newButtons = new Button[8][8];
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
@@ -92,7 +92,7 @@ public class Tree {
                 newButtons[i][j].setText(oldButtons[i][j].getText());
             }
         }
-        if ((h_init-h)%2 == 0){
+        if (giliransaya){
             System.out.println("Giliran O");
             // giliran O
             newButtons[i_tree][j_tree].setText("O");
