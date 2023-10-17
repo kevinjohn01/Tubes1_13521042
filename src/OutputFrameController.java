@@ -69,7 +69,7 @@ public class OutputFrameController {
      * @param isBotFirst True if bot is first, false otherwise.
      *
      */
-    void getInput(String name1, String name2, String rounds, boolean isBotFirst){
+    void getInput(String name1, String player1type, String name2, String player2type, String rounds, boolean isBotFirst){
         this.playerXName.setText(name1);
         this.playerOName.setText(name2);
         this.roundsLeftLabel.setText(rounds);
