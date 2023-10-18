@@ -72,7 +72,7 @@ public class Tree {
         System.out.println("h: " + h);
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 1
-        if (h == 1 || (h_init-h == 3)){
+        if (h == 1 || (h_init-h == 1)){
             System.out.println("..");
             buttons = updateButtons(buttons, i_tree, j_tree, giliransaya);
             int nX = 0;
@@ -108,18 +108,16 @@ public class Tree {
                             Tree updatedTree = new Tree(buttons, h - 1, h,  i, j, false, alpha, beta);
                             maxEval = Math.max(maxEval, updatedTree.getVal());
                             System.out.println("maxEval:" + maxEval);
-                            this.alpha = Math.max(updatedTree.getAlpha(), updatedTree.getVal());
-                            this.beta = updatedTree.getBeta();
-
+                            this.alpha = Math.max(this.alpha, updatedTree.getVal());
 
                             if (this.alpha >= this.beta) {//pruning
-                                System.out.println("kena prune di " + h);
                                 break;
-                            } else {
-                                this.treeList.add(updatedTree);
-                                System.out.println("berhasil ditambahkan");
                             }
+                            this.treeList.add(updatedTree);
                         }
+                    }
+                    if (this.alpha >= this.beta) {//pruning
+                        break;
                     }
                 }
                 this.val = maxEval;
@@ -132,19 +130,18 @@ public class Tree {
                         if (buttons[i][j].getText().isEmpty()) {
                             Tree updatedTree = new Tree(buttons, h - 1, h, i, j, true, alpha, beta);
                             minEval = Math.min(minEval, updatedTree.getVal());
-                            System.out.println("maxEval:"+minEval);
+                            System.out.println("maxEval:" + minEval);
 
-                            this.beta = Math.min(updatedTree.getBeta(), updatedTree.getVal());
-                            this.alpha = updatedTree.getAlpha();
+                            this.beta = Math.min(this.beta, updatedTree.getVal());
 
                             if (this.alpha >= this.beta) {//pruning
-                                System.out.println("kena prune di " + h);
                                 break;
-                            } else {
-                                this.treeList.add(updatedTree);
-                                System.out.println("berhasil ditambahkan");
                             }
+                            this.treeList.add(updatedTree);
                         }
+                    }
+                    if (this.alpha >= this.beta) {//pruning
+                        break;
                     }
                 }
                 this.val = minEval;

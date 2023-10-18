@@ -7,8 +7,8 @@ public class BotMiniMax extends Bot{
     @Override
     public int[] move(Button[][] buttons, int round) {
         // initial value max_val
-        int i_max = firstEmpty(buttons)[0];
-        int j_max = firstEmpty(buttons)[1];
+        int i_max = 0;
+        int j_max = 0;
         this.alpha = Integer.MIN_VALUE;
         this.beta = Integer.MAX_VALUE;
         //buttons0 = updateButton(buttons, i_max, j_max);
@@ -34,27 +34,28 @@ public class BotMiniMax extends Bot{
 //                }
 //            }
 //        }
-        int i=0;
-        int j=0;
-        while (i<8 && this.alpha <= this.beta) {
-            j = 0;
-            while (j<8 && this.alpha <= this.beta){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 System.out.println(".");
                 if (buttons[i][j].getText().equals("")) {
                     System.out.println("masuk ga " + i + " " + j);
-                    Tree t = new Tree(buttons, round, round, i, j, false, alpha, beta);
+                    Tree t = new Tree(buttons, round, round, i, j, false, this.alpha, this.beta);
                     max_val = Math.max(max_val, t.getVal());
-                    this.alpha = Math.max(t.getAlpha(), t.getVal());
-                    this.beta = t.getBeta();
+                    this.alpha = Math.max(t.getVal(), this.alpha);
                     System.out.println("bval: " + t.getVal() + " bmax: " + max_val);
                     if (t.getVal() >= max_val) {
                         i_max = i;
                         j_max = j;
                     }
+                    if (this.alpha >= this.beta) {//pruning
+                        break;
+                    }
+
                 }
-                j++;
             }
-            i++;
+            if (this.alpha >= this.beta) {//pruning
+                break;
+            }
         }
         System.out.println(max_val);
         return new int[]{i_max,j_max};

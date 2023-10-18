@@ -50,7 +50,7 @@ public class OutputFrameController {
     private int playerOScore;
     private int roundsLeft;
     private boolean isBotFirst;
-    private BotMiniMax bot;
+    private Bot bot;
 
 
     private static final int ROW = 8;
