@@ -24,46 +24,46 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args);
-        Button[][] buttons = new Button[8][8];
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 4; j++){
-                buttons[i][j] = new Button();
-                buttons[i][j].setText("X");
-            }
-        }
-        for(int i = 0; i < 8; i++){
-            for(int j = 4; j < 8; j++){
-                buttons[i][j] = new Button();
-                buttons[i][j].setText("O");
-            }
-        }
-
-        buttons[0][6].setText("");
-        buttons[0][5].setText("");
-        buttons[0][4].setText("");
-        buttons[1][4].setText("");
-
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                System.out.print(buttons[i][j].getText());
-                if (buttons[i][j].getText().equals("")){
-                    System.out.print(" ");
-                }
-            }
-            System.out.println();
-        }
-
-        Tree t = new Tree(buttons, 3, 0,4, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
-
-        System.out.println("Size t: " + t.getTreeList().size());
-        System.out.println("Size t[0]: " + t.getTreeList().get(0).getTreeList().size());
-        System.out.println("Size t[0][0]: " + t.getTreeList().get(0).getTreeList().get(0).getTreeList().size());
-
-        System.out.println("Done");
-
-        BotMiniMax bmm = new BotMiniMax();
-        int[] ans = bmm.move(buttons,2);
-        System.out.println(ans[0] + " " + ans[1]);
+        launch(args);
+//        Button[][] buttons = new Button[8][8];
+//        for(int i = 0; i < 8; i++){
+//            for(int j = 0; j < 4; j++){
+//                buttons[i][j] = new Button();
+//                buttons[i][j].setText("X");
+//            }
+//        }
+//        for(int i = 0; i < 8; i++){
+//            for(int j = 4; j < 8; j++){
+//                buttons[i][j] = new Button();
+//                buttons[i][j].setText("O");
+//            }
+//        }
+//
+//        buttons[0][6].setText("");
+//        buttons[0][5].setText("");
+//        buttons[0][4].setText("");
+//        buttons[1][4].setText("");
+//
+//        for(int i = 0; i < 8; i++){
+//            for(int j = 0; j < 8; j++){
+//                System.out.print(buttons[i][j].getText());
+//                if (buttons[i][j].getText().equals("")){
+//                    System.out.print(" ");
+//                }
+//            }
+//            System.out.println();
+//        }
+//
+//        Tree t = new Tree(buttons, 3, 0,4, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//
+//        System.out.println("Size t: " + t.getTreeList().size());
+//        System.out.println("Size t[0]: " + t.getTreeList().get(0).getTreeList().size());
+//        System.out.println("Size t[0][0]: " + t.getTreeList().get(0).getTreeList().get(0).getTreeList().size());
+//
+//        System.out.println("Done");
+//
+//        BotMiniMax bmm = new BotMiniMax();
+//        int[] ans = bmm.move(buttons,3);
+//        System.out.println(ans[0] + " " + ans[1]);
     }
 }

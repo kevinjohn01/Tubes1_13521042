@@ -29,7 +29,7 @@ public class Tree {
             }
 //            System.out.println(i_tree + " " + j_tree + " Buttons: ");
 //            printButtons(buttons);
-//            this.val = nO-nX;
+//          this.val = nO-nX;
 //            System.out.println("val: " + this.val);
         }
         // rekursif buat tree child
@@ -72,7 +72,7 @@ public class Tree {
                 }
             }
             System.out.println(i_tree + " " + j_tree + " Buttons: ");
-            printButtons(buttons);
+            //printButtons(buttons);
             this.val = nO-nX;
             System.out.println("val: " + this.val);
 
@@ -91,9 +91,10 @@ public class Tree {
                         if (buttons[i][j].getText().isEmpty()) {
                             Tree updatedTree = new Tree(buttons, h - 1, i, j, false, alpha, beta);
                             maxEval = Math.max(maxEval, updatedTree.getVal());
-                            System.out.println("maxEval:"+maxEval);
+                            System.out.println("maxEval:" + maxEval);
                             this.alpha = Math.max(updatedTree.getAlpha(), updatedTree.getVal());
-                            this.beta = updatedTree.getBeta();;
+                            this.beta = updatedTree.getBeta();
+
 
                             if (this.alpha >= this.beta) {//pruning
                                 System.out.println("kena prune di " + h);
@@ -105,6 +106,7 @@ public class Tree {
                         }
                     }
                 }
+                this.val = maxEval;
             } else {
                 int minEval = Integer.MAX_VALUE;
                 System.out.println("...");
@@ -129,6 +131,7 @@ public class Tree {
                         }
                     }
                 }
+                this.val = minEval;
             }
 
             System.out.println("else " + this.val);
