@@ -52,6 +52,7 @@ public class Tree {
                     if (t.getVal() == this.val){
                         this.listMax.add(new int[]{i_tree, j_tree});
                         this.listMax.addAll(t.getListMax());
+                        break;
                     }
                 }
             } else {
@@ -60,6 +61,7 @@ public class Tree {
                     if (t.getVal() == this.val){
                         this.listMax.add(new int[]{i_tree, j_tree});
                         this.listMax.addAll(t.getListMax());
+                        break;
                     }
                 }
             }
