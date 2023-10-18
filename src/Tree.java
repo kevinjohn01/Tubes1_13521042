@@ -52,11 +52,11 @@ public class Tree {
         }
     }
 
-    public Tree(Button[][] buttons, int h, int i_tree, int j_tree, boolean giliransaya, int alpha, int beta){
+    public Tree(Button[][] buttons, int h, int h_init, int i_tree, int j_tree, boolean giliransaya, int alpha, int beta){
         System.out.println("h: " + h);
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 1
-        if (h == 1){
+        if (h == 1 || (h_init-h == 3)){
             System.out.println("..");
             buttons = updateButtons(buttons, i_tree, j_tree, giliransaya);
             int nX = 0;
@@ -89,7 +89,7 @@ public class Tree {
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
                         if (buttons[i][j].getText().isEmpty()) {
-                            Tree updatedTree = new Tree(buttons, h - 1, i, j, false, alpha, beta);
+                            Tree updatedTree = new Tree(buttons, h - 1, h,  i, j, false, alpha, beta);
                             maxEval = Math.max(maxEval, updatedTree.getVal());
                             System.out.println("maxEval:" + maxEval);
                             this.alpha = Math.max(updatedTree.getAlpha(), updatedTree.getVal());
@@ -114,7 +114,7 @@ public class Tree {
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
                         if (buttons[i][j].getText().isEmpty()) {
-                            Tree updatedTree = new Tree(buttons, h - 1, i, j, true, alpha, beta);
+                            Tree updatedTree = new Tree(buttons, h - 1, h, i, j, true, alpha, beta);
                             minEval = Math.min(minEval, updatedTree.getVal());
                             System.out.println("maxEval:"+minEval);
 
