@@ -12,7 +12,6 @@ public class Tree {
 
     public Tree(Button[][] buttons, int h, int i_tree, int j_tree, boolean giliransaya){
         listMax = new ArrayList<int[]>();
-        System.out.println("h: " + h);
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 1
         if (h == 1){
@@ -32,7 +31,7 @@ public class Tree {
             }
 //            System.out.println(i_tree + " " + j_tree + " Buttons: ");
 //            printButtons(buttons);
-//          this.val = nO-nX;
+            this.val = nO-nX;
 //            System.out.println("val: " + this.val);
         }
         // rekursif buat tree child
@@ -65,7 +64,7 @@ public class Tree {
                     }
                 }
             }
-            System.out.println("else " + this.val);
+
         }
     }
 

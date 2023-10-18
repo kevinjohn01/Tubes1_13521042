@@ -54,10 +54,13 @@ public class Main extends Application {
             System.out.println();
         }
 
-        Tree t = new Tree(buttons, 2, 0,4, true);
-        for(int[] i: t.getListMax()){
-            System.out.println(i[0] + " " + i[1]);
-        }
+//
+//        Tree t = new Tree(buttons, 2, 0,4, true);
+//
+//        for(int[] i: t.getListMax()){
+//            System.out.println(i[0] + " " + i[1]);
+//        }
+
 //        Tree t1 = new Tree(buttons, 2, 2, 0,6, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //
 //        System.out.println(t.getVal());
@@ -68,8 +71,7 @@ public class Main extends Application {
 
         System.out.println("Done");
 //
-//        BotMiniMax bmm = new BotMiniMax();
-//        int[] ans = bmm.move(buttons,3);
-//        System.out.println(ans[0] + " " + ans[1]);
+        BotGeneticAlgorithm bmm = new BotGeneticAlgorithm();
+        bmm.setIndividu(buttons,2,true);
     }
 }
