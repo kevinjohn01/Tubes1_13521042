@@ -6,14 +6,17 @@ import javafx.application.Application;
 public class Tree {
     private int val;
     private ArrayList<Tree> treeList;
+    private ArrayList<int[]> listMax;
     private int alpha;
     private int beta;
 
     public Tree(Button[][] buttons, int h, int i_tree, int j_tree, boolean giliransaya){
+        listMax = new ArrayList<int[]>();
         System.out.println("h: " + h);
         treeList = new ArrayList<Tree>();
         // hitung value sendiri di h = 1
         if (h == 1){
+            listMax.add(new int[]{i_tree,j_tree});
             buttons = updateButtons(buttons, i_tree, j_tree, giliransaya);
             int nX = 0;
             int nO = 0;
@@ -45,8 +48,20 @@ public class Tree {
             }
             if(giliransaya) {
                 this.val = max(this.treeList);
+                for(Tree t: this.treeList){
+                    if (t.getVal() == this.val){
+                        this.listMax.add(new int[]{i_tree, j_tree});
+                        this.listMax.addAll(t.getListMax());
+                    }
+                }
             } else {
                 this.val = min(this.treeList);
+                for(Tree t: this.treeList){
+                    if (t.getVal() == this.val){
+                        this.listMax.add(new int[]{i_tree, j_tree});
+                        this.listMax.addAll(t.getListMax());
+                    }
+                }
             }
             System.out.println("else " + this.val);
         }
@@ -153,6 +168,9 @@ public class Tree {
         return this.beta;
     }
 
+    public ArrayList<int[]> getListMax(){
+        return this.listMax;
+    }
     public void setVal(int value) {
         this.val = value;
     }
