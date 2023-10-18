@@ -53,14 +53,17 @@ public class Main extends Application {
 //            }
 //            System.out.println();
 //        }
+
+//        Tree t = new Tree(buttons, 2, 2, 0,4, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
+//        Tree t1 = new Tree(buttons, 2, 2, 0,6, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
 //
-//        Tree t = new Tree(buttons, 3, 0,4, true, Integer.MIN_VALUE, Integer.MAX_VALUE);
-//
+//        System.out.println(t.getVal());
+//        System.out.println(t1.getVal());
 //        System.out.println("Size t: " + t.getTreeList().size());
 //        System.out.println("Size t[0]: " + t.getTreeList().get(0).getTreeList().size());
 //        System.out.println("Size t[0][0]: " + t.getTreeList().get(0).getTreeList().get(0).getTreeList().size());
-//
-//        System.out.println("Done");
+
+        System.out.println("Done");
 //
 //        BotMiniMax bmm = new BotMiniMax();
 //        int[] ans = bmm.move(buttons,3);
